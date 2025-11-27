@@ -1,0 +1,31 @@
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import vendorRoutes from "./src/routes/vendorRoutes.js";
+import userRoutes from "./src/routes/userRoutes.js";
+import reviewRoutes from "./src/routes/reviewRoutes.js";
+import storageRoutes from "./src/routes/storageRoutes.js";
+import searchRoutes from "./src/routes/searchRoutes.js";
+import favoritesRoutes from "./src/routes/favoritesRoutes.js";
+import menuRoutes from "./src/routes/menuRoutes.js";
+import adminRoutes from "./src/routes/adminRoutes.js";
+import hygieneRoutes from "./src/routes/hygieneRoutes.js";
+dotenv.config();
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use("/api/vendors", vendorRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/storage", storageRoutes);
+app.use("/api/search", searchRoutes);
+app.use("/api/favorites", favoritesRoutes);
+app.use("/api/menu", menuRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/hygiene", hygieneRoutes);
+app.get("/", (req, res) => {
+  res.send("Nukkad Ninja Backend Running...");
+});
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
+});
